@@ -27,11 +27,15 @@ app.listen(PORT, async () => {
     //   await tweet.save();
     //   console.log(tweet);
 
-    const tweetRepo = new TweetRepository();
+    //const tweetRepo = new TweetRepository();
 
     //const tweet = await tweetRepo.getWithComment('641408448ac4c0dd54d77b90');
-    const tweets = await tweetRepo.getAll(0,4);
-    console.log(tweets[0].contentWithEmail);
+    // const tweets = await tweetRepo.getAll(0,4);
+    // console.log(tweets[0].contentWithEmail);
 
+    // const tweet = await tweetRepo.create({
+    //     content:'this is a hook content'
+    // });
+    // console.log(tweet);
 
 });
