@@ -23,7 +23,7 @@ async get (id) {
 
 async getWithComment(id){
     try {
-        const tweet = await Tweet.findById(id).populate({path:'comments'});
+        const tweet = await Tweet.findById(id).populate({path:'comments'}).lean();//use  lean for the creating js obj insted of mongoose obj 
         return tweet;
     } catch (error) {
         console.log('Something went wrong in repository layer',error);
@@ -48,6 +48,15 @@ async destroy (id) {
     }
 }
 
+async getAll(offset, limit){
+    try {
+        const tweet = await Tweet.find().skip(offset).limit(limit);
+        return tweet;
+    } catch (error) {
+        console.log('Something went wrong in repository layer',error);
+    }
+
+}
 
 }
 

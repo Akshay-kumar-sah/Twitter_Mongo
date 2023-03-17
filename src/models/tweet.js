@@ -10,7 +10,7 @@ content : {
 userEmail:{
     type:String
 },
-comment : [
+comments : [
     {
       type:mongoose.Schema.Types.ObjectId,
       ref:'Comment'
@@ -19,6 +19,9 @@ comment : [
 
 },{timestamps:true});//timestamps for created at and updated at
 
+tweetSchema.virtual('contentWithEmail').get(function process() {
+    return `${this.content} \nCreated by : ${this.userEmail}`
+})
 const Tweet = mongoose.model('Tweet',tweetSchema);
 
 module.exports = Tweet;
