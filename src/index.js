@@ -72,7 +72,7 @@ app.listen(PORT, async () => {
 let servic = new TweetService();
 
 const tweet = await servic.create({
-    content : 'This is after #processing really #excited, it is goin to be #fun #clglife'
+    content : '#CODES'
 });
 console.log(tweet);
 
