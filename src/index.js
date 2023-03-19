@@ -5,6 +5,8 @@ const Comment = require('./models/comment');
 const app = express();
 const PORT = 3000; 
 const TweetRepository = require('././repository/tweet-repository');
+const HashtagRepository = require('./repository/hashtag-repository');
+const TweetService = require('./services/tweet-service');
 
 app.listen(PORT, async () => {
     console.log(`Server started at ${PORT}`)
@@ -37,5 +39,42 @@ app.listen(PORT, async () => {
     //     content:'this is a hook content'
     // });
     // console.log(tweet);
+
+    const repo = new HashtagRepository();
+
+    // await repo.bulkCtreate(
+    //     [
+
+    //     {
+    //         title:'Trend',
+    //         tweets:[]
+
+    //     },
+    //     { 
+    //         title:'Excited',
+    //         tweets:[]
+
+    //     },
+    //     {
+    //         title:'fun',
+    //         tweets:[]
+
+    //     }
+    // ]
+
+    // )
+
+//  let response = await repo.findByName(['Trend','Excited']);
+//  console.log(response);
+//  response = response.map(tags => tags.title);
+//  console.log(response);
+  
+let servic = new TweetService();
+
+const tweet = await servic.create({
+    content : 'This is after #processing really #excited, it is goin to be #fun #clglife'
+});
+console.log(tweet);
+
 
 });
