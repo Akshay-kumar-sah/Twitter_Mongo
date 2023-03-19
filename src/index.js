@@ -1,12 +1,16 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const connect = require('./config/database');
-const Tweet = require('./models/tweet');
-const Comment = require('./models/comment');
+
 const app = express();
 const PORT = 3000; 
-const TweetRepository = require('././repository/tweet-repository');
-const HashtagRepository = require('./repository/hashtag-repository');
+
 const TweetService = require('./services/tweet-service');
+const apiRoutes = require('./routes/index');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
+app.use('/api',apiRoutes);
 
 app.listen(PORT, async () => {
     console.log(`Server started at ${PORT}`)
@@ -40,7 +44,7 @@ app.listen(PORT, async () => {
     // });
     // console.log(tweet);
 
-    const repo = new HashtagRepository();
+   // const repo = new HashtagRepository();
 
     // await repo.bulkCtreate(
     //     [
@@ -69,12 +73,12 @@ app.listen(PORT, async () => {
 //  response = response.map(tags => tags.title);
 //  console.log(response);
   
-let servic = new TweetService();
+// let servic = new TweetService();
 
-const tweet = await servic.create({
-    content : '#CODES'
-});
-console.log(tweet);
+// const tweet = await servic.create({
+//     content : '#CODES'
+// });
+// console.log(tweet);
 
 
 });
