@@ -9,22 +9,6 @@ content : {
     max:[250,'Tweet can not be more than 250 characters']
 },
 
-hashtags : [
-    {
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'Hashtag'
-    }
-],
-userEmail:{
-    type:String
-},
-comments : [
-    {
-      type:mongoose.Schema.Types.ObjectId,
-      ref:'Comment'
-    }
-]
-
 },{timestamps:true});//timestamps for created at and updated at
 
 tweetSchema.virtual('contentWithEmail').get(function process() {
