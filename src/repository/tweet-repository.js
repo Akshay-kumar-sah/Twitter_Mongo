@@ -1,6 +1,10 @@
 const Tweet = require('../models/tweet');
+const CrudRepository = require('./crud-repository');
 
-class TweetRepository {
+class TweetRepository extends CrudRepository{
+    constructor(){
+        super(Tweet);
+    }
 
 async create (data) {
 try {
@@ -12,14 +16,6 @@ try {
    
 }
 
-async get (id) {
-    try {
-        const tweet = await Tweet.findById(id);
-        return tweet;
-    } catch (error) {
-        console.log('Something went wrong in repository layer',error);
-    }
-}
 
 async getWithComment(id){
     try {
@@ -39,14 +35,7 @@ async update (tweetId, data) {
     }
 }
 
-async destroy (id) {
-    try {
-        const tweet = await Tweet.findByIdAndRemove(id);
-        return tweet;
-    } catch (error) {
-        console.log('Something went wrong in repository layer',error);
-    }
-}
+
 
 async getAll(offset, limit){
     try {
