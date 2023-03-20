@@ -6,6 +6,8 @@ const app = express();
 const PORT = 3000; 
 
 const TweetService = require('./services/tweet-service');
+const LikeService = require('./services/like-service');
+const {UserRepository,TweetRepository} = require('./repository/index');
 const apiRoutes = require('./routes/index');
 
 app.use(bodyParser.json());
@@ -79,6 +81,18 @@ app.listen(PORT, async () => {
 //     content : '#CODES'
 // });
 // console.log(tweet);
+
+const userRepo = new UserRepository();
+const tweetRepo = new TweetRepository();
+
+const tweets = await tweetRepo.getAll(0,4);
+const user = await userRepo.create({
+    email:'akki190820008@gamil.com',
+    password:'123456',
+    name:'Akshay'
+});
+const likeService = new LikeService();
+await likeService.toggleLike(tweets[1].id,'Tweet',user.id);
 
 
 });

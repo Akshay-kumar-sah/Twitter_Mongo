@@ -47,6 +47,15 @@ async getAll(offset, limit){
 
 }
 
+
+async find(data){
+    try {
+        const tweet = await Tweet.findById(data).populate({path:'likes'});
+        return tweet;
+    } catch (error) {
+        console.log('Something went wrong in repository layer',error);
+    }
+}
 }
 
 module.exports = TweetRepository;
