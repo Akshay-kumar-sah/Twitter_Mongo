@@ -13,7 +13,7 @@ class LikeService {
         
          if(modelType == 'Tweet'){
           var likeable = await this.tweetRepository.find(modelId);
-          console.log(likeable);
+          console.log("likeable", likeable);
          }else if (modelType == 'Comment'){
           // TODO
          }else{
@@ -25,11 +25,11 @@ class LikeService {
             onModel: modelType,
             likeable: modelId
          });
-
+         console.log("exists" , exists);
          if(exists) {
             likeable.likes.pull(exists.id);
             await likeable.save();
-            await exists.remove();
+            await exists.deleteOne();
             var isAdded = false;
 
          }else {
@@ -48,7 +48,7 @@ class LikeService {
          return isAdded;
 
      } catch (error) {
-        
+        console.log(error);
      }
 
 

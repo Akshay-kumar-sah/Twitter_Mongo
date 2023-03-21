@@ -11,6 +11,7 @@ class LikeRepository extends CrudRepository {
     async findByUserLikable (data){
         try {
             const like = await Like.findOne(data);
+           // console.log("like from like repo");
             return like;
         } catch (error) {
             throw error;
