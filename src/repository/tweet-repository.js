@@ -19,7 +19,12 @@ try {
 
 async getWithComment(id){
     try {
-        const tweet = await Tweet.findById(id).populate({path:'comments'}).lean();//use  lean for the creating js obj insted of mongoose obj 
+        const tweet = await Tweet.findById(id).populate({
+            path:'comments',
+            populate:{
+                path:'comments'
+            }
+        }).lean();//use  lean for the creating js obj insted of mongoose obj 
         return tweet;
     } catch (error) {
         console.log('Something went wrong in repository layer',error);

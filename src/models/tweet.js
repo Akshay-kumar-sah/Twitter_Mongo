@@ -14,6 +14,13 @@ likes: [
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Like'
     }
+],
+
+comments : [
+    {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Comment' 
+    }
 ]
 
 },{timestamps:true});//timestamps for created at and updated at

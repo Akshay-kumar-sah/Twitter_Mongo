@@ -17,7 +17,7 @@ return res.status(201).json({
 
 } catch (error) {
     
-    return res.status(201).json({
+    return res.status(500).json({
         success: false,
         message: 'Something went wrong',
         data: {},
@@ -31,6 +31,37 @@ return res.status(201).json({
 
 }
 
+
+const getTweet = async (req, res) => {
+
+    try {
+    
+        const response = await tweetService.get(req.params.id);
+        
+        return res.status(201).json({
+            success: true,
+            message: 'Successfully create a tweet',
+            data: response,
+            err:{}
+        });
+        
+        
+        } catch (error) {
+            
+            return res.status(500).json({
+                success: false,
+                message: 'Something went wrong',
+                data: {},
+                err:error
+            });
+        
+        
+        }
+        
+    
+}
+
 module.exports = {
-    createTweet
+    createTweet,
+    getTweet
 }
